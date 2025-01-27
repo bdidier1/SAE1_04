@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de type de marché</title>
+    <!-- Inclure Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Formulaire d'ajout de vente</h1>
+        <form action="/ventes/add" method="post">
+    <!-- Champ pour le Libellé -->
+
+    <div class="mb-3">
+        <label for="id_maraicher" class="form-label">Lieu :</label>
+        <select name="id_maraicher" id="id_maraicher" class="form-select" required>
+            <option value="">Sélectionner un Maraicher</option>
+                {% for mec in maraicher %}
+            <option value="{{ mec.id_maraicher }}"> {{ mec.nom }} </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Champ pour le Lieu -->
+    <div class="mb-3">
+        <label for="date_vente" class="form-label">date :</label>
+        <input type="date"
+               class="form-control"
+               id="date_vente"
+               placeholder="Entrez la date"
+               required
+               value="{{ ventes['date_vente'] }}"
+               name="date_vente">
+    </div>
+
+    <!-- Champ pour le Nombre de places -->
+    <div class="mb-3">
+        <label for="id_type_marche" class="form-label">Marche :</label>
+        <select name="id_type_marche" id="id_type_marche" class="form-select" required>
+            <option value="">Sélectionner un Marche</option>
+                {% for marche in type_marche %}
+            <option value="{{ marche.id_type_marche }}"> {{ marche.Libelle_type_marche }} </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="id_produit" class="form-label">Produit :</label>
+        <select name="id_produit" id="id_produit" class="form-select" required>
+            <option value="">Sélectionner un Produit</option>
+                {% for prod in produit %}
+            <option value="{{ prod.id_produit }}"> {{ prod.libelle_produit }} </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Champ pour la surface -->
+    <div class="mb-3">
+        <label for="quantitee" class="form-label">Quantitee (kg) :</label>
+        <input type="number"
+               class="form-control"
+               id="quantitee"
+               placeholder="Entrez la surface"
+               min="0"
+               step="0.01"
+               required
+               value="{{ ventes['quantitee'] }}"
+               name="quantitee">
+    </div>
+
+    <!-- Bouton de soumission -->
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+</form>
+
+    </div>
+
+    <!-- Inclure Bootstrap 5 JS (pour les fonctionnalités supplémentaires) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

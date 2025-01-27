@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Participation</title>
+    <!-- Inclure Bootstrap 5 CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Formulaire de Participation</h1>
+        <form action="/participation/add" method="post">
+            <!-- Champs pour saisir les informations de la participation -->
+            <div class="mb-3">
+                <label for="id_maraicher1" class="form-label">Nom :</label>
+                <select name="id_maraicher" id="id_maraicher1" class="form-select" required>
+                    <option value="">Sélectionner le nom de Maraicher</option>
+                        {% for mec in maraicher %}
+                    <option value="{{ mec.id_maraicher }}"> {{ mec.nom }} </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="id_maraicher" class="form-label">Prénom :</label>
+                <select name="id_maraicher" id="id_maraicher" class="form-select" required>
+                    <option value="">Sélectionner le prenom du Maraicher</option>
+                        {% for mec in maraicher %}
+                    <option value="{{ mec.id_maraicher }}"> {{ mec.prenom }} </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="id_type_marche" class="form-label">Prénom :</label>
+                <select name="id_type_marche" id="id_type_marche" class="form-select" required>
+                    <option value="">Sélectionner le marché</option>
+                        {% for mec in type_marche %}
+                    <option value="{{ mec.id_type_marche }}"> {{ mec.Libelle_type_marche }} </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="date_participation" class="form-label">Date de la participation :</label>
+                <input type="date" class="form-control" id="date_participation" placeholder="Entrez la date de la participation" required value="{{ participation.date_participation }}" name="date_participation">
+            </div>
+
+            <div class="mb-3">
+                <label for="duree" class="form-label">Duree de la participation :</label>
+                <select class="form-select" id="duree" class="form-select" required name="duree">
+                    <option value="0h30" {% if participation.duree == '0h30' %}selected{% endif %}>0h30</option>
+                    <option value="1h00" {% if participation.duree == '1h00' %}selected{% endif %}>1h00</option>
+                    <option value="1h30" {% if participation.duree == '1h30' %}selected{% endif %}>1h30</option>
+                    <option value="2h00" {% if participation.duree == '2h00' %}selected{% endif %}>2h00</option>
+                    <option value="2h30" {% if participation.duree == '2h30' %}selected{% endif %}>2h30</option>
+                    <option value="3h00" {% if participation.duree == '3h00' %}selected{% endif %}>3h00</option>
+                    <option value="3h30" {% if participation.duree == '3h30' %}selected{% endif %}>3h30</option>
+                    <option value="4h00" {% if participation.duree == '4h00' %}selected{% endif %}>4h00</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="prix_place" class="form-label">Prix de la place de participation :</label>
+                <input type="number" class="form-control" id="prix_place" placeholder="Entrez la prix de la place de participation" min="0" step="0.01" required value="{{ participation.prix_place }}" name="prix_place">
+            </div>
+
+            <!-- Bouton de soumission -->
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+    </div>
+
+    <!-- Inclure Bootstrap 5 JS (pour les fonctionnalités supplémentaires) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

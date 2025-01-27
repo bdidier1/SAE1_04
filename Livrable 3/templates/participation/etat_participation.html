@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon"  href="{{ url_for('static', filename='iconeweb.ico') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='mes_styles.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" >
+    <title>Etat type marché</title>
+</head>
+<body>
+{% include('_nav.html') %}
+
+{#{{ participation }}#}
+<h1>Etat des types de marchés</h1>
+
+<p>Pour les <strong>{{ sql_prix_total.nb_marche }}</strong> marchés, le prix de la particpation est de <strong>{{ sql_prix_total.prix_total }}</strong> €.</p>
+
+<div class="div_tb_bootstrap">
+{% if participation | length >= 1 %}
+    <table class="table table-dark">
+        <tr>
+            <th>Nom</th><th>Prenom</th><th>Marché</th><th>Date</th><th>Duree</th><th>Prix</th>
+        </tr>
+        {% for ligne in participation %}
+            <tr>
+                <td>{{ ligne.nom}}</td>
+                <td>{{ ligne.prenom}}</td>
+                <td>{{ ligne.Libelle_type_marche}}</td>
+                <td>{{ ligne.date_participation}}</td>
+                <td>{{ ligne.duree}}</td>
+                <td>{{ ligne.prix_place}} €</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h2> la liste des participations est vide</h2>
+{% endif %}
+</div>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{{ url_for('static', filename='iconeweb.ico') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='mes_styles.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" >
+    <title>Etat des Produits</title>
+</head>
+<body>
+{% include('_nav.html') %}
+
+<h1>Etat des Produits</h1>
+
+<p>Sur un total de <strong>{{ totals.total_produits }}</strong> produit(s), le prix total des produits est de <strong>{{ totals.total_prix }}</strong> euros,
+   et le prix moyen des produits est de <strong>{{ totals.prix_moyen }}</strong> euros.</p>
+<div class="div_tb_bootstrap">
+{% if produit_rentable %}
+    <h2>Le produit le plus rentable :</h2>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom du produit</th>
+                <th>Recette Totale</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ produit_rentable.id_produit }}</td>
+                <td>{{ produit_rentable.libelle_produit }}</td>
+                <td>{{ produit_rentable.recette_totale }} €</td>
+            </tr>
+        </tbody>
+    </table>
+{% else %}
+    <p>Aucun produit n'a encore généré de recette.</p>
+{% endif %}
+</div>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>

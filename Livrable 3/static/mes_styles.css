@@ -1,0 +1,111 @@
+/* Style de la barre de navigation personnalisée */
+.custom-navbar {
+  background-color: #333;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.custom-nav-item {
+  margin-right: 20px;
+  position: relative;
+}
+
+.custom-nav-link {
+  color: #444;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 12px 20px;
+  background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.custom-nav-link:hover {
+  background-color: white;
+}
+
+.custom-nav-item.custom-dropdown:hover .custom-dropdown-menu {
+  display: block;
+}
+
+.custom-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444;
+  list-style: none;
+  margin: 0;
+  width: 100%;
+  padding: 5px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.custom-dropdown-item {
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.custom-dropdown-item:hover {
+  background-color: #444;
+}
+
+/* Responsivité pour petits écrans */
+@media (max-width: 768px) {
+  .custom-nav-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .custom-nav-item {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .custom-nav-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+.mid_show_h3{
+    display: flex;
+    justify-content: center;
+}
+.mid_show_btn{
+      display: flex;
+    justify-content: center;
+}
+.titre_tm_show{
+  display: flex;
+  justify-content: center;
+}
+.btn btn-primary{
+  display: flex;
+  justify-content: center;
+}
+.btn_tm_show{
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+}
+.div_tb_bootstrap{
+  margin: 5%;
+}

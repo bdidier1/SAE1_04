@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{{ url_for('static', filename='iconeweb.ico') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='mes_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}">
+    <title>Participations</title>
+</head>
+<body>
+{% include('_nav.html') %}
+
+{#{{ participation }}#}
+<h1 class="titre_tm_show">Voici la liste des participations : </h1>
+
+<div class="btn_tm_show">
+<a href="/participation/add" class="btn btn-primary"><strong class="strong_tm_show">Ajouter une participation</a>
+</div>
+
+{% if participations | length >= 1 %}
+<div class="div_tb_bootstrap">
+    <table class="table table-dark">
+        <tr>
+            <th>Nom</th><th>Prénom</th><th>Marché</th><th>Date</th><th>Duree</th><th>Prix</th><th>Actions</th>
+        </tr>
+        {% for ligne in participations %}
+            <tr>
+                <td>{{ ligne.nom }}</td>
+                <td>{{ ligne.prenom }}</td>
+                <td>{{ ligne.Libelle_type_marche }}</td>
+                <td>{{ ligne.date_participation }}</td>
+                <td>{{ ligne.duree }}</td>
+                <td>{{ ligne.prix_place }} €</td>
+                <td>
+                    <a class="btn btn-warning" href="/participation/edit?id_participation={{ ligne.id_participation }}">éditer</a>
+                    <a class="btn btn-danger" href="/participation/delete?id_participation={{ ligne.id_participation }}">supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h2>La liste des participations est vide</h2>
+{% endif %}
+
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>

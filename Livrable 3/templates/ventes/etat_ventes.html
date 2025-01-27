@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon"  href="{{ url_for('static', filename='iconeweb.ico') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='mes_styles.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" >
+    <title>Etat type marché</title>
+</head>
+<body>
+{% include('_nav.html') %}
+
+{#{{ ventes }}#}
+<h1>Etat des ventes</h1>
+
+<p>Sur les <strong>{{nb_ventes.nb_de_ventes}}</strong>ventes, il y a <strong>{{nb_prix_total.nb_quantitee}}</strong> kilo de fruits et legumes vendu, et il y a une recette total de <strong>{{nb_prix_total.prix_total_calcule}}</strong> €.<p>
+<div class="div_tb_bootstrap">
+{% if ventes | length >= 1 %}
+    <table class="table table-dark">
+        <tr>
+            <th>Maraicher</th><th>Date</th><th>Marché</th><th>Produit</th><th>Quantité</th>
+        </tr>
+        {% for ligne in ventes %}
+            <tr>
+                <td>{{ ligne.nom}}</td>
+                  <td>{{ ligne.date_vente}}</td>
+                  <td>{{ ligne.Libelle_type_marche}}</td>
+                  <td>{{ ligne.libelle_produit}}</td>
+                  <td>{{ ligne.quantitee}} kg</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h2> la liste des ventes est vide</h2>
+{% endif %}
+</div>
+
+<div class="div_tb_bootstrap">
+{% if produit | length >= 1 %}
+    <table class="table table-dark">
+        <tr>
+            <th>ID</th><th>NOM</th><th>SAISON</th><th>PRIX</th>
+        </tr>
+        {% for ligne in produit %}
+            <tr>
+                <td>{{ ligne.id }}</td>
+                <td>{{ ligne.nom }}</td>
+                <td>{{ ligne.id_saison }}</td>
+                <td>{{ ligne.prix }} €</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h2> la liste des produit est vide</h2>
+{% endif %}
+</div>
+
+
+
+
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>

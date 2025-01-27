@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon"  href="{{ url_for('static', filename='iconeweb.ico') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='mes_styles.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" >
+    <title>Supprimer Type marché</title>
+</head>
+<body>
+{% include('_nav.html') %}
+
+{#{{ typemarche }}#}
+<h1 class="titre_tm_show">Voici la liste des types de marchés à supprimer : </h1>
+<p class="alert alert-danger" role="alert" > ATTENTION ! Si vous supprimez, vous ne pourrez plus jamais retrouver votre table.</p>
+
+<div class="div_tb_bootstrap">
+{% if typemarche | length >= 1 %}
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Lieu</th>
+      <th scope="col">Nombre de places</th>
+      <th scope="col">Surface (en m2)</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for typemarches in typemarche %}
+            <tr>
+                {# commentaires : autre notation possible, on affiche un element du dictionnaire
+                <td>{{ typemarches['id'] }}</td><td>{{ typemarches['nom'] }}</td><td>{{ typemarches['groupe'] }}</td>
+            #}
+                <td>{{ typemarches.id_type_marche }}</td>
+                <td>{{ typemarches.Libelle_type_marche }}</td>
+
+                <td>
+                    {{ typemarches.Libelle_lieu }}
+                </td>
+
+                <td>{{ typemarches.nombre_place_type_marche}}</td>
+                <td>{{ typemarches.surface_type_marche}}</td>
+                <td>
+                  <form action="/type-marche/delete" method="POST" style="display: inline">
+                       <input type="hidden" name="id_type_marche" value="{{ typemarches.id_type_marche }}">
+                       <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                  </td>
+            </tr>
+        {% endfor %}
+  </tbody>
+</table>
+    {% else %}
+    <h2> la liste des types de marchés est vide</h2>
+<a href="/type-marche/add" >ajouter un type de marché</a>
+{% endif %}
+    </div>
+
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>
